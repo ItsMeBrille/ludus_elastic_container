@@ -23,13 +23,13 @@
   ansible.builtin.debug:
     msg: "Kibana memory limit: {{ host_memory_bytes }} mb"
 
-- name: Replace memory limit in .env file with ludus_elastic_password 
+- name: Replace memory limit in .env file with host_memory_bytes 
   ansible.builtin.replace:
     path: "{{ ludus_elastic_container_install_path }}/.env"
     regexp: 'MEM_LIMIT=.*$'
     replace: 'MEM_LIMIT={{ host_memory_bytes * 1024 * 1024}}' # Convert from mb to bytes
 
-- name: Replace LICENCE type in .env file with ludus_elastic_password 
+- name: Replace LICENCE type in .env file with ludus_elastic_license_type 
   ansible.builtin.replace:
     path: "{{ ludus_elastic_container_install_path }}/.env"
     regexp: '^LICENSE=.*$'
